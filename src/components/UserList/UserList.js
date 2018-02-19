@@ -32,8 +32,6 @@ class UserList extends React.Component {
         console.log(this.users);
         return (
             <div>
-                <Login />
-                <MakeRoom/>
                 {users.map(m => ( <div key={m}>{m} </div> ))}
             </div>
         );
