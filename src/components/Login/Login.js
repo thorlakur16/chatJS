@@ -60,7 +60,7 @@ class Login extends React.Component {
             }else {
                 console.log('user already exists');
             }
-        });
+        }.bind(this));
     }
 
 }
