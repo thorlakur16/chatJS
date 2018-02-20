@@ -6,10 +6,12 @@ class ChatWindow extends React.Component {
         // Register emission handler
         const { socket } = this.context;
         socket.on('updatechat',  (room, msg) => {
-            console.log(room);
             let messages = Object.assign([], this.state.messages);
-
-            messages.push(`${(new Date()).toLocaleTimeString()} - ${msg[msg.length-1].nick} : ${msg[msg.length-1].message}`);
+            messages = [];
+            console.log(msg);
+            for(var o in msg) {
+                messages.push(`${msg[o].timestamp} - ${msg[o].nick} : ${msg[o].message}`);
+            }
 
             this.setState({ messages });
         });
@@ -25,7 +27,7 @@ class ChatWindow extends React.Component {
         const { messages } = this.state;
         return (
             <div className="chatwindow">
-                <h2>{this.props.children}</h2>
+                <b>{this.props.children}</b>
                 {messages.map(m => ( <div key={m}>{m}</div> ))}
             </div>
         );

@@ -36,6 +36,10 @@ class MainContent extends React.Component {
     }
     changeCurrentRoom(rm) {
         this.setState({currentRoom: rm});
+        const { socket } = this.context;
+        socket.emit('joinroom', {room: rm},  function (response) {
+            console.log(response);
+        });
     }
 
 

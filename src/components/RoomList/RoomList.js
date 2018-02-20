@@ -30,7 +30,7 @@ class RoomList extends React.Component {
         return (
             <div className='roomList'>
                 <div><b>Available rooms:</b></div>
-                <div>
+                <div id='listOfRooms'>
                     {rooms.map(m => ( <div onClick={this.onItemClick} className={'roomListItem'} key={m}>{m} </div> ))}
                 </div>
                 <div >........</div>
