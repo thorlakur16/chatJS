@@ -6,6 +6,7 @@ import MainContent from './components/MainContent/MainContent';
 //import Login from './components/Login/Login';
 //import UserList from './components/UserList/UserList';
 import '../styles/site';
+//import RoomList from './components/RoomList/RoomList';
 //import ChatWindow from './components/ChatWindow/ChatWindow';
 //import MakeRoom from './components/MakeRoom/MakeRoom';
 //import UserList from './components/UserList/UserList';

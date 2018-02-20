@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 
 class Login extends React.Component {
 
-    /*componentDidMount() {
-        // Register emission handler
-        const { socket } = this.context;
-        socket.on('userlist', (userlist) => {
-            console.log(userlist);
-        });
-    }*/
-
     constructor() {
         super();
         this.updateName = this.updateName.bind(this);
