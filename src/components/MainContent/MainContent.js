@@ -29,9 +29,11 @@ class MainContent extends React.Component {
         );
     }
 
+
     changeCurrentRoom(rm) {
         this.setState({currentRoom: rm});
     }
+
 
     login () {
         const { socket } = this.context;
