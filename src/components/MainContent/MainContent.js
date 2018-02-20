@@ -12,7 +12,7 @@ class MainContent extends React.Component {
         this.changeCurrentRoom = this.changeCurrentRoom.bind(this);
         this.onLeave = this.onLeave.bind(this);
         this.state =  {
-            currentRoom: 'lobby'
+            currentRoom: ''
         }
     }
     render () {
@@ -28,11 +28,11 @@ class MainContent extends React.Component {
         );
     }
 
+    onLeave() {
+        const {socket} = this.context;
+        socket.emit('partroom',this.currentRoom);
+        this.setState({currentRoom:''});
 
-
-
-    onLeave(room) {
-        this.changeCurrentRoom(room);
     }
 
     changeCurrentRoom(rm) {
