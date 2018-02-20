@@ -5,8 +5,7 @@ module.exports = {
     entry: './src/app.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/'
+        filename: 'bundle.js'
     },
     module: {
         rules: [
@@ -27,9 +26,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000,
-        open: true,
-        historyApiFallback: true
-
+        open: true
     },
     devtool: 'inline-source-map',
     plugins: [new HtmlWebpackPlugin({

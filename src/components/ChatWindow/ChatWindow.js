@@ -6,8 +6,7 @@ class ChatWindow extends React.Component {
         // Register emission handler
         const { socket } = this.context;
         socket.on('updatechat',  (room, msg) => {
-            console.log(msg);
-            // Update the message state
+            console.log(room);
             let messages = Object.assign([], this.state.messages);
 
             messages.push(`${(new Date()).toLocaleTimeString()} - ${msg[msg.length-1].nick} : ${msg[msg.length-1].message}`);
@@ -18,29 +17,16 @@ class ChatWindow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            msg: '',
             messages: []
         };
     }
-    sendMessage() {
-        const { socket } = this.context;
 
-        socket.emit('sendmsg',{ roomName: this.props.children, msg: this.state.msg });
-        this.setState({ msg: '' });
-    }
     render() {
-        const { messages, msg } = this.state;
+        const { messages } = this.state;
         return (
-            <div className="chat-window">
+            <div className="chatwindow">
+                <h2>{this.props.children}</h2>
                 {messages.map(m => ( <div key={m}>{m}</div> ))}
-                <div className="input-box">
-                    <input
-                        type="text"
-                        value={msg}
-                        className="input input-big"
-                        onInput={(e) => this.setState({ msg: e.target.value })} />
-                    <button type="button" className="btn pull-right" onClick={() => this.sendMessage()}>Send</button>
-                </div>
             </div>
         );
     }

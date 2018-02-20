@@ -13,14 +13,13 @@ class MakeRoom extends React.Component {
         return (
             <div className="makeRoom">
                 <label>Make new room:</label>
-                <input type="text" name="room" id="roomName" onChange={this.updateRoomName}></input>
+                <input type="text" name="room" id="roomName" onChange={this.updateRoomName} />
                 <input type="button" id="makeRoom" value="Make room" onClick={this.makeRoom}/>
             </div>
         );
     }
 
     updateRoomName (e) {
-        console.log(e);
         this.name = e.target.value;
     }
 
@@ -29,6 +28,7 @@ class MakeRoom extends React.Component {
         socket.emit('joinroom', {room: this.name}, function () {
             console.log('room created');
         });
+        socket.emit('rooms');
     }
 }
 

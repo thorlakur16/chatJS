@@ -15,7 +15,6 @@ class UserList extends React.Component {
         const { socket } = this.context;
         socket.emit('users');
         socket.on('userlist', (userlist) => {
-            console.log(userlist);
             let users = Object.assign([], this.state.users);
             for(var i = 0; i < userlist.length; i++) {
                 users.push(userlist[i]);
@@ -27,7 +26,6 @@ class UserList extends React.Component {
 
     render() {
         const { users } = this.state;
-        console.log(this.users);
         return (
             <div>
                 <div><b>User list:</b></div>
