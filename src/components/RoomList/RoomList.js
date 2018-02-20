@@ -31,13 +31,17 @@ class RoomList extends React.Component {
             <div className='roomList'>
                 <div><b>Available rooms:</b></div>
                 <div>
-                    {rooms.map(m => ( <div key={m}>{m} </div> ))}
+                    {rooms.map(m => ( <div onClick={this.onItemClick} className={'roomListItem'} key={m}>{m} </div> ))}
                 </div>
                 <div >........</div>
                 <div><MakeRoom/></div>
             </div>
         );
     }
+
+    onItemClick (event) {
+        this.state.currentRoom = event.currentTarget.innerText;
+    };
 
 
 }
