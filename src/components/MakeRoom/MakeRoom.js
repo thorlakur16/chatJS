@@ -25,7 +25,8 @@ class MakeRoom extends React.Component {
     }
 
     makeRoom () {
-        this.context.socket.emit('joinroom', {room: this.name}, function () {
+        const { socket } = this.context;
+        socket.emit('joinroom', {room: this.name}, function () {
             console.log('room created');
         });
     }

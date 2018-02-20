@@ -4,15 +4,14 @@ import { PropTypes } from 'prop-types';
 class ChatWindow extends React.Component {
     componentDidMount() {
         // Register emission handler
-        this.context.socket.on('updatechat',  (room, msg) => {
+        const { socket } = this.context;
+        socket.on('updatechat',  (room, msg) => {
             console.log(msg);
             // Update the message state
             let messages = Object.assign([], this.state.messages);
 
             messages.push(`${(new Date()).toLocaleTimeString()} - ${msg[msg.length-1].nick} : ${msg[msg.length-1].message}`);
 
-
-            console.log('messages: ', messages);
             this.setState({ messages });
         });
     }
@@ -24,7 +23,9 @@ class ChatWindow extends React.Component {
         };
     }
     sendMessage() {
-        this.context.socket.emit('sendmsg',{ roomName: this.props.children, msg: this.state.msg });
+        const { socket } = this.context;
+
+        socket.emit('sendmsg',{ roomName: this.props.children, msg: this.state.msg });
         this.setState({ msg: '' });
     }
     render() {

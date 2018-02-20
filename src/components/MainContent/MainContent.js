@@ -2,6 +2,7 @@ import React from 'react';
 import RoomList from '../RoomList/RoomList';
 import PropTypes from 'prop-types';
 import ChatWindow from '../ChatWindow/ChatWindow';
+import UserList from '../UserList/UserList';
 
 class MainContent extends React.Component {
 
@@ -14,7 +15,6 @@ class MainContent extends React.Component {
     }
     render () {
         this.login();
-        console.log('222222'+this.state.currentRoom);
         return(
             <div id="mainContent">
                 <div id='rooms'><RoomList /></div>
@@ -22,19 +22,21 @@ class MainContent extends React.Component {
                     <div id="chatWindow"><ChatWindow>{this.state.currentRoom}</ChatWindow></div>
                     <div id="inputWindow">inputWindow</div>
                 </div>
-                <div id="userList">userList</div>
+                <div id="userList"><UserList/></div>
             </div>
         );
     }
 
     login () {
-        this.context.socket.emit('adduser', 'Laki', function (available) {
+        const { socket } = this.context;
+        socket.emit('adduser', 'Laki', function (available) {
             if(available) {
                 console.log('user is available');
             }else {
                 console.log('user already exists');
             }
         });
+
     }
 
     

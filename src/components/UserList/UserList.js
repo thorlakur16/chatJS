@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Login from '../Login/Login';
-import MakeRoom from '../MakeRoom/MakeRoom';
 
 class UserList extends React.Component {
 
@@ -11,12 +9,12 @@ class UserList extends React.Component {
         this.state = {
             users: []
         };
-
     }
 
     componentDidMount() {
-        this.context.socket.emit('users');
-        this.context.socket.on('userlist', (userlist) => {
+        const { socket } = this.context;
+        socket.emit('users');
+        socket.on('userlist', (userlist) => {
             console.log(userlist);
             let users = Object.assign([], this.state.users);
             for(var i = 0; i < userlist.length; i++) {
@@ -32,6 +30,7 @@ class UserList extends React.Component {
         console.log(this.users);
         return (
             <div>
+                <div><b>User list:</b></div>
                 {users.map(m => ( <div key={m}>{m} </div> ))}
             </div>
         );

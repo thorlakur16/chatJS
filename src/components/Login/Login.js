@@ -18,14 +18,10 @@ class Login extends React.Component {
         return (
             <div className="login-back">
                 <label>Username:</label>
-                <input type="text" name="user" id="user" onChange={this.updateName}/>
-
+                <input type="text" name="user" id="user" onChange={this.updateName} />
                 <input type="button" id="submit" value="Login" onClick={this.onLogin}/>
                 <div id='error'>{error ? error:null}</div>
-
             </div>
-
-
         )
     }
 
@@ -34,7 +30,8 @@ class Login extends React.Component {
     }
 
     onLogin() {
-        this.context.socket.emit('adduser', this.name, function (available) {
+        const { socket } = this.context;
+        socket.emit('adduser', this.name, function (available) {
             if(available) {
                 console.log('user is available');
                 let user = this.name;
@@ -50,16 +47,6 @@ class Login extends React.Component {
             }
         }.bind(this));
     }
-
-    /*getUsers() {
-        console.log('try getting users');
-        this.context.socket.emit('users', function (userlist) {
-            console.log(userlist);
-
-        });
-
-    }*/
-
 
 }
 
