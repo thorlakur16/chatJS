@@ -29,7 +29,6 @@ module.exports = {
         port: 9000,
         open: true,
         historyApiFallback: true
-
     },
     devtool: 'inline-source-map',
     plugins: [new HtmlWebpackPlugin({
