@@ -8,7 +8,11 @@ class ChatWindow extends React.Component {
             console.log(msg);
             // Update the message state
             let messages = Object.assign([], this.state.messages);
-            messages.push(`${(new Date()).toLocaleTimeString()} - ${msg.}`);
+
+            messages.push(`${(new Date()).toLocaleTimeString()} - ${msg[msg.length-1].nick} : ${msg[msg.length-1].message}`);
+
+
+            console.log('messages: ', messages);
             this.setState({ messages });
         });
     }

@@ -35,8 +35,9 @@ class MainContent extends React.Component {
                 console.log('user already exists');
             }
         });
-
     }
+
+    
 }
 
 MainContent.contextTypes = {
