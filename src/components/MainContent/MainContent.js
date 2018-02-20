@@ -27,6 +27,7 @@ class MainContent extends React.Component {
         );
     }
 
+
     login () {
         const { socket } = this.context;
         socket.emit('adduser', 'Laki', function (available) {
