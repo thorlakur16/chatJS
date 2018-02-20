@@ -9,10 +9,10 @@ class RoomList extends React.Component {
         this.context.socket.on('roomlist', (roomlist) => {
             console.log(roomlist);
             let rooms = Object.assign([], this.state.rooms);
-            for (var o in roomlist) {
+            for(var o in roomlist) {
                 rooms.push(o);
-                console.log(rooms);
             }
+            console.log(rooms);
             this.setState({rooms});
         });
     }
@@ -26,7 +26,6 @@ class RoomList extends React.Component {
 
     render() {
         const { rooms } = this.state;
-        console.log(rooms);
         return (
             <div className='roomList'>
                 <div><b>Available rooms:</b></div>

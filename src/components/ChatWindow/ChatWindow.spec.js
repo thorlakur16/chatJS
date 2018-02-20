@@ -1,5 +1,5 @@
 //define tests for Login
-describe('Login tests', () => {
+describe('ChatWindow tests', () => {
     it('should pass', () => {
         expect(true).toBe(true);
     });
