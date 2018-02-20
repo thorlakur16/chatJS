@@ -25,7 +25,7 @@ class InputBox extends React.Component {
                 </textarea>
 
                 <button type="button" className="inputButton" onClick={() => this.sendMessage()}>Send</button>
-                <button type="button" className="leaveButton" onClick={() => this.props.onLeave('lobby')}>Leave</button>
+                <button type="button" className="leaveButton" onClick={() => this.props.onLeave}>Leave</button>
             </div>
         );
     }
