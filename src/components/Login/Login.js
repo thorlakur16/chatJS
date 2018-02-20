@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Login extends React.Component {
-
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +12,6 @@ class Login extends React.Component {
       
         this.updateName = this.updateName.bind(this);
         this.onLogin = this.onLogin.bind(this);
-        //this.getUsers = this.getUsers.bind(this);
     }
 
     render() {
@@ -33,9 +31,7 @@ class Login extends React.Component {
                     <input type="button" id="submit" value="Login" onClick={this.onLogin}/>
                     <div id='error'>{error ? error:null}</div>
                 </form>
-
             </div>
-
         )
     }
 
@@ -51,9 +47,7 @@ class Login extends React.Component {
             if(available) {
                 console.log('user is available');
                 let user = nickname;
-                console.log(user);
                 let isLogedIn = available;
-                console.log(isLogedIn);
                 this.props.userHandler(user);
                 this.props.loginHandler(isLogedIn);
                 this.setState({error:''});
@@ -61,8 +55,11 @@ class Login extends React.Component {
                 console.log('user already exists');
             }
         }.bind(this));
+        socket.emit('users');
+        socket.emit('joinroom', {room: 'lobby'},  function (response) {
+            console.log(response);
+        });
     }
-
 }
 
 Login.contextTypes = {

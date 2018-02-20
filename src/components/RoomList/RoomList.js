@@ -35,6 +35,7 @@ class RoomList extends React.Component {
                 </div>
                 <div >........</div>
                 <div><MakeRoom/></div>
+                <button type="button" className="leaveButton" onClick={() => this.props.onLeave('lobby')}>Leave room</button>
             </div>
         );
     }

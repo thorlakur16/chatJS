@@ -5,7 +5,6 @@ class UserList extends React.Component {
 
     constructor() {
         super();
-        this.users = [];
         this.state = {
             users: []
         };
@@ -13,14 +12,13 @@ class UserList extends React.Component {
 
     componentDidMount() {
         const { socket } = this.context;
-        socket.emit('users');
         socket.on('userlist', (userlist) => {
             let users = Object.assign([], this.state.users);
+            users = [];
             for(var i = 0; i < userlist.length; i++) {
                 users.push(userlist[i]);
             }
             this.setState({ users });
-            this.render();
         });
     }
 
@@ -29,11 +27,10 @@ class UserList extends React.Component {
         return (
             <div>
                 <div><b>User list:</b></div>
-                {users.map(m => ( <div key={m}>{m} </div> ))}
+                {users.map(m => ( <div className={'roomListItem'} key={m}>{m} </div> ))}
             </div>
         );
     }
-
 }
 
 UserList.contextTypes = {
