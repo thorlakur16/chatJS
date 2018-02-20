@@ -59,6 +59,7 @@ class Login extends React.Component {
                 this.setState({error:''});
             }else {
                 console.log('user already exists');
+                this.setState({error:'Username taken'});
             }
         }.bind(this));
     }
