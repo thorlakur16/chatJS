@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 
 class Login extends React.Component {
 
+
     constructor(props) {
         super(props);
         this.state = {
             error:'',
             nickname:''
         };
+      
         this.updateName = this.updateName.bind(this);
         this.onLogin = this.onLogin.bind(this);
         //this.getUsers = this.getUsers.bind(this);
@@ -31,6 +33,7 @@ class Login extends React.Component {
                     <input type="button" id="submit" value="Login" onClick={this.onLogin}/>
                     <div id='error'>{error ? error:null}</div>
                 </form>
+
             </div>
 
         )
@@ -56,9 +59,8 @@ class Login extends React.Component {
                 this.setState({error:''});
             }else {
                 console.log('user already exists');
-                this.setState({error:'Username Taken'});
             }
-        }.bind(this));
+        });
     }
 
 }
