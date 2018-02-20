@@ -5,20 +5,21 @@ import MakeRoom from '../MakeRoom/MakeRoom';
 class RoomList extends React.Component {
 
     componentDidMount() {
-        this.context.socket.emit('rooms');
-        this.context.socket.on('roomlist', (roomlist) => {
-            console.log(roomlist);
+        const { socket } = this.context;
+        socket.emit('rooms');
+        socket.on('roomlist', (roomlist) => {
             let rooms = Object.assign([], this.state.rooms);
+            rooms = [];
             for(var o in roomlist) {
                 rooms.push(o);
             }
-            console.log(rooms);
-            this.setState({rooms});
+            this.setState({ rooms });
         });
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.onItemClick = this.onItemClick.bind(this);
         this.state = {
             rooms: []
         };
@@ -39,7 +40,8 @@ class RoomList extends React.Component {
     }
 
     onItemClick (event) {
-        this.state.currentRoom = event.currentTarget.innerText;
+        let curr = event.currentTarget.innerText;
+        this.props.changeCurrentRoom(curr);
     };
 
 
