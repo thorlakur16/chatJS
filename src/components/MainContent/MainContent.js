@@ -7,6 +7,9 @@ import InputBox from '../InputBox/InputBox';
 
 class MainContent extends React.Component {
 
+    componentDidMount() {
+        this.changeCurrentRoom('lobby');
+    }
     constructor () {
         super();
         this.changeCurrentRoom = this.changeCurrentRoom.bind(this);
@@ -42,7 +45,6 @@ class MainContent extends React.Component {
             console.log(response);
         });
         socket.emit('users');
-
     }
 }
 

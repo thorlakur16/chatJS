@@ -42,7 +42,7 @@ class Login extends React.Component {
     onLogin(e) {
         e.preventDefault();
         const { socket } = this.context;
-        const {nickname} = this.state;
+        const { nickname } = this.state;
         socket.emit('adduser', nickname, function (available) {
             if(available) {
                 console.log('user is available');
@@ -56,10 +56,7 @@ class Login extends React.Component {
                 this.setState({error:'Username taken'});
             }
         }.bind(this));
-        socket.emit('users');
-        socket.emit('joinroom', {room: 'lobby'},  function (response) {
-            console.log(response);
-        });
+
     }
 }
 
