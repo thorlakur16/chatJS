@@ -3,20 +3,36 @@ import PropTypes from 'prop-types';
 
 class Login extends React.Component {
 
-    constructor() {
-        super();
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            error:'',
+            nickname:''
+        };
+      
         this.updateName = this.updateName.bind(this);
         this.onLogin = this.onLogin.bind(this);
         //this.getUsers = this.getUsers.bind(this);
     }
 
     render() {
+        const {error,nickname} = this.state;
         return (
             <div className="login-back">
-                <label>Username:</label>
-                <input type="text" name="user" id="user" onChange={this.updateName} />
-
-                <input type="button" id="submit" value="Login" onClick={this.onLogin}/>
+                <form onSubmit={this.onLogin}>
+                    <label>Username:</label>
+                    <input
+                        ref={(input)=>{ this.textInput = input }}
+                        type='text'
+                        id='user'
+                        value={nickname}
+                        onChange={this.updateName}
+                        placeholder={'MyUsername'}
+                    />
+                    <input type="button" id="submit" value="Login" onClick={this.onLogin}/>
+                    <div id='error'>{error ? error:null}</div>
+                </form>
 
             </div>
 
@@ -24,14 +40,23 @@ class Login extends React.Component {
     }
 
     updateName(e) {
-        this.name = e.target.value;
+        this.setState({nickname:e.target.value});
     }
 
-    onLogin() {
+    onLogin(e) {
+        e.preventDefault();
         const { socket } = this.context;
-        socket.emit('adduser', this.name, function (available) {
+        const {nickname} = this.state;
+        socket.emit('adduser', nickname, function (available) {
             if(available) {
                 console.log('user is available');
+                let user = nickname;
+                console.log(user);
+                let isLogedIn = available;
+                console.log(isLogedIn);
+                this.props.userHandler(user);
+                this.props.loginHandler(isLogedIn);
+                this.setState({error:''});
             }else {
                 console.log('user already exists');
             }
